@@ -24,7 +24,7 @@ CHINA_STOCKS = ['BABA', 'TCEHY', 'JD', 'NIO', 'PDD', 'BIDU', 'LI', 'XPEV', 'BILI
 
 JAPAN_STOCKS= ['7203.T', '6758.T', '9984.T', '9432.T', '8306.T', '9983.T', '7974.T', '8035.T', '6954.T', '6367.T']
 
-CRYPTO = ['BTC-USD', 'ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'DOGE-USD', 'SOL-USD', 'DOT-USD', 'LTC-USD', 'BCH-USD']
+CRYPTO = ['ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'DOGE-USD', 'SOL-USD', 'DOT-USD', 'LTC-USD', 'BCH-USD']
 
 class DataRepository:
   ticker_df: pd.DataFrame
@@ -116,7 +116,7 @@ class DataRepository:
       historyPrices['is_positive_growth_5d_future'] = np.where(historyPrices['growth_future_5d'] > 1, 1, 0)
 
       # sleep 1 sec between downloads - not to overload the API server
-      time.sleep(1)
+      time.sleep(2)
 
       if self.ticker_df is None:
         self.ticker_df = historyPrices
@@ -138,7 +138,7 @@ class DataRepository:
                         # period = "max",
                         interval = "1d")
     # sleep 1 sec between downloads - not to overload the API server
-    time.sleep(2)
+    time.sleep(1)
     
     # https://finance.yahoo.com/quote/%5EGSPC/
     # SNP - SNP Real Time Price. Currency in USD
