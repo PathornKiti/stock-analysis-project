@@ -1,7 +1,7 @@
 import pandas as pd
 from tqdm import tqdm
 
-import pandas_ta as ta
+import talib
 import os
 from scripts.data_repo import DataRepository
 

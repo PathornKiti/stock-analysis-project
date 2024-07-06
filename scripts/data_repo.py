@@ -20,7 +20,11 @@ EU_STOCKS = ['NVO','MC.PA', 'ASML', 'RMS.PA', 'OR.PA', 'SAP', 'ACN', 'TTE', 'SIE
 # https://companiesmarketcap.com/india/largest-companies-in-india-by-market-cap/
 INDIA_STOCKS = ['RELIANCE.NS','TCS.NS','HDB','BHARTIARTL.NS','IBN','SBIN.NS','LICI.NS','INFY','ITC.NS','HINDUNILVR.NS','LT.NS']
 
+CHINA_STOCKS = ['BABA', 'TCEHY', 'JD', 'NIO', 'PDD', 'BIDU', 'LI', 'XPEV', 'BILI', 'IQ']
 
+JAPAN_STOCKS= ['7203.T', '6758.T', '9984.T', '9432.T', '8306.T', '9983.T', '7974.T', '8035.T', '6954.T', '6367.T']
+
+CRYPTO = ['BTC-USD', 'ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'DOGE-USD', 'SOL-USD', 'DOT-USD', 'LTC-USD', 'BCH-USD']
 
 class DataRepository:
   ticker_df: pd.DataFrame
@@ -28,7 +32,7 @@ class DataRepository:
   macro_df: pd.DataFrame
 
   min_date: str
-  ALL_TICKERS: list[str] = US_STOCKS  + EU_STOCKS + INDIA_STOCKS
+  ALL_TICKERS: list[str] = US_STOCKS  + EU_STOCKS + INDIA_STOCKS + CHINA_STOCKS + JAPAN_STOCKS + CRYPTO
 
   def __init__(self):
     self.ticker_df = None
@@ -78,6 +82,12 @@ class DataRepository:
         historyPrices['ticker_type'] = 'EU'
       elif ticker in INDIA_STOCKS:
         historyPrices['ticker_type'] = 'INDIA'
+      elif ticker in CHINA_STOCKS:
+        historyPrices['ticker_type'] = 'CHINA'
+      elif ticker in JAPAN_STOCKS:
+        historyPrices['ticker_type'] = 'JAPAN'
+      elif ticker in CRYPTO:
+        historyPrices['ticker_type'] = 'CRYPTO'
       else:
         historyPrices['ticker_type'] = 'ERROR'
 
@@ -128,7 +138,7 @@ class DataRepository:
                         # period = "max",
                         interval = "1d")
     # sleep 1 sec between downloads - not to overload the API server
-    time.sleep(1)
+    time.sleep(2)
     
     # https://finance.yahoo.com/quote/%5EGSPC/
     # SNP - SNP Real Time Price. Currency in USD
