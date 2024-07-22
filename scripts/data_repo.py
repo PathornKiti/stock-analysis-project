@@ -97,6 +97,10 @@ class DataRepository:
       historyPrices['Weekday'] = historyPrices.index.weekday
       historyPrices['Date'] = historyPrices.index.date
 
+      for i in [1,3,7,30,90,365]:
+          historyPrices['growth_'+str(i)+'d'] = historyPrices['Adj Close'] / historyPrices['Adj Close'].shift(i)
+      historyPrices['growth_future_5d'] = historyPrices['Adj Close'].shift(-5) / historyPrices['Adj Close']
+
       historyPrices['tmp_date'] = pd.to_datetime(historyPrices['Date'])
       timestamp_s = historyPrices['tmp_date'].map(pd.Timestamp.timestamp)
       historyPrices.drop(columns=['tmp_date'],inplace=True)
