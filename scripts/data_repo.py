@@ -14,7 +14,7 @@ import pandas_datareader as pdr
 US_STOCKS = ['MSFT', 'AAPL', 'GOOG', 'NVDA', 'AMZN', 'META', 'BRK-B', 'LLY', 'AVGO','V', 'JPM','TSLA',
              'WMT','XOM', 'UNH', 'MA','PG', 'ORCL', 'COST', 'JNJ', 'HD', 'MRK', 'BAC', 'ABBV', 'CVX',
              'NFLX', 'KO', 'AMD', 'ADBE', 'CRM', 'PEP', 'QCOM', 'TMO', 'TMUS', 'WFC', 'CSCO', 'AMAT', 'DHR',
-             'MCD','DIS', 'ABT', 'TXN', 'GE', ' INTU', 'VZ', 'AMGN', 'AXP', 'CAT', 'IBM', 'PFE', 'PM', 'MS']
+             'MCD','DIS', 'ABT', 'TXN', 'GE', ' INTU', 'VZ', 'AMGN', 'AXP', 'CAT', 'IBM', 'PFE', 'PM', 'MS','ADBE','ABNB','O']
 # https://companiesmarketcap.com/european-union/largest-companies-in-the-eu-by-market-cap/
 EU_STOCKS = ['NVO','MC.PA', 'ASML', 'RMS.PA', 'OR.PA', 'SAP', 'ACN', 'TTE', 'SIE.DE','IDEXY','CDI.PA']
 # https://companiesmarketcap.com/india/largest-companies-in-india-by-market-cap/
@@ -97,10 +97,23 @@ class DataRepository:
       historyPrices['Weekday'] = historyPrices.index.weekday
       historyPrices['Date'] = historyPrices.index.date
 
-      # historical returns
-      for i in [1,3,7,30,90,365]:
-          historyPrices['growth_'+str(i)+'d'] = historyPrices['Adj Close'] / historyPrices['Adj Close'].shift(i)
-      historyPrices['growth_future_5d'] = historyPrices['Adj Close'].shift(-5) / historyPrices['Adj Close']
+      timestamp_s = historyPrices['Date'].map(pd.Timestamp.timestamp)
+      day = 24*60*60
+      week = day*7
+      year = day*(365.2425)
+      month = year / 12
+      #Add cyclic features
+      # Time of month
+      historyPrices['Month_sin'] = np.sin(timestamp_s * (2 * np.pi / month))
+      historyPrices['Month_cos'] = np.cos(timestamp_s * (2 * np.pi / month))
+
+      # Time of week
+      historyPrices['Week_sin'] = np.sin(timestamp_s * (2 * np.pi / week))
+      historyPrices['Week_cos'] = np.cos(timestamp_s * (2 * np.pi / week))
+
+      # Time of year
+      historyPrices['Year_sin'] = np.sin(timestamp_s * (2 * np.pi / year))
+      historyPrices['Year_cos'] = np.cos(timestamp_s * (2 * np.pi / year))
 
       # Technical indicators
       # SimpleMovingAverage 10 days and 20 days
