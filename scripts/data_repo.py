@@ -96,9 +96,10 @@ class DataRepository:
       historyPrices['Month'] = historyPrices.index.month
       historyPrices['Weekday'] = historyPrices.index.weekday
       historyPrices['Date'] = historyPrices.index.date
-      historyPrices['Date'] = pd.to_datetime(historyPrices['Date'])
 
-      timestamp_s = historyPrices['Date'].map(pd.Timestamp.timestamp)
+      historyPrices['tmp_date'] = pd.to_datetime(historyPrices['Date'])
+      timestamp_s = historyPrices['tmp_date'].map(pd.Timestamp.timestamp)
+      historyPrices.drop(columns=['tmp_date'],inplace=True)
       day = 24*60*60
       week = day*7
       year = day*(365.2425)
