@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 import time
 import os
+from statsmodels.tsa.seasonal import STL
 import pandas_datareader as pdr
 
 # https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/
@@ -120,6 +121,12 @@ class DataRepository:
       # Time of year
       historyPrices['Year_sin'] = np.sin(timestamp_s * (2 * np.pi / year))
       historyPrices['Year_cos'] = np.cos(timestamp_s * (2 * np.pi / year))
+
+      #Time series decomposition
+      decomposition = STL(historyPrices['Adj Close'], period=5).fit()
+      historyPrices['seasonal']=decomposition.seasonal
+      historyPrices['trend']=decomposition.trend
+      historyPrices['residual']=decomposition.resid
 
       # Technical indicators
       # SimpleMovingAverage 10 days and 20 days
