@@ -54,7 +54,7 @@ class TransformData:
       df_current_ticker_volume_indicators = self._get_talib_volatility_cycle_price_indicators(current_ticker_df)
       df_current_ticker_pattern_indicators = self._get_talib_pattern_indicators(current_ticker_df)
       df_current_ticker_statistic= self._get_talib_statistics(current_ticker_df)
-      df_current_ticker_price=self._get_talib_price_transform(current_ticker_df)
+
 
       # need to have same 'utc' time on both sides of merges
       # https://stackoverflow.com/questions/73964894/you-are-trying-to-merge-on-datetime64ns-utc-and-datetime64ns-columns-if-yo
@@ -63,20 +63,18 @@ class TransformData:
       df_current_ticker_volume_indicators['Date']= pd.to_datetime(df_current_ticker_volume_indicators['Date'], utc=True)
       df_current_ticker_pattern_indicators['Date']= pd.to_datetime(df_current_ticker_pattern_indicators['Date'], utc=True)
       df_current_ticker_statistic['Date']= pd.to_datetime(df_current_ticker_statistic['Date'], utc=True)
-      df_current_ticker_price['Date']= pd.to_datetime(df_current_ticker_price['Date'], utc=True)
     
      # merge to one df
       m1 = pd.merge(current_ticker_df, df_current_ticker_momentum_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
       m2 = pd.merge(m1, df_current_ticker_volume_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
       m3 = pd.merge(m2, df_current_ticker_pattern_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
       m4 = pd.merge(m3, df_current_ticker_statistic.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
-      m5 = pd.merge(m4, df_current_ticker_price.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
       # m3 = current_ticker_df
 
       if merged_df is None:
-        merged_df = m5
+        merged_df = m4
       else:
-        merged_df = pd.concat([merged_df,m5], ignore_index = False)
+        merged_df = pd.concat([merged_df,m4], ignore_index = False)
 
     self.transformed_df = merged_df    
 
@@ -602,32 +600,6 @@ class TransformData:
 
     return stat_df
   
-  def _get_talib_price_transform(self, df: pd.DataFrame) -> pd.DataFrame:
-
-    # TA-Lib price transformation
-    avg_price = talib.AVGPRICE(df.Open.values, df.High.values, df.Low.values, df.Close.values)
-    med_price = talib.MEDPRICE(df.High.values, df.Low.values)
-    typ_price = talib.TYPPRICE(df.High.values, df.Low.values, df.Close.values)
-    weight_price = talib.WCLPRICE(df.High.values, df.Low.values, df.Close.values)
-
-
-    price_df = pd.DataFrame(
-              {'Date': df.Date.values,
-              'Ticker': df.Ticker,
-              # TA-Lib Stat
-              'avg_price':avg_price,
-              'med_price':med_price,
-              'typ_price':typ_price,
-              'weight_price':weight_price,
-              }
-          )
-
-    # Need a proper date type
-    price_df['Date'] = pd.to_datetime(
-              price_df['Date'])
-
-    return price_df
-
   def _merge_tickers_macro_indexes_df(self):
     if self.transformed_df is None:
       return
