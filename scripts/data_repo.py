@@ -25,6 +25,12 @@ CHINA_STOCKS = ['BABA', 'TCEHY', 'JD', 'NIO', 'PDD', 'BIDU', 'LI', 'XPEV', 'BILI
 
 JAPAN_STOCKS= ['7203.T', '6758.T', '9984.T', '9432.T', '8306.T', '9983.T', '7974.T', '8035.T', '6954.T', '6367.T']
 
+THAI_STOCKS = ['ADVANC.BK', 'AOT.BK', 'AWC.BK', 'BAM.BK', 'BBL.BK', 'BDMS.BK', 'BEC.BK', 'BEM.BK', 'BGRIM.BK', 'BH.BK',
+               'BJC.BK', 'BTS.BK', 'CBG.BK', 'CENTEL.BK', 'CPALL.BK', 'CPF.BK', 'CRC.BK', 'KKP.BK', 'BCH.BK', 'EGCO.BK',
+               'GLOBAL.BK', 'GPSC.BK', 'GULF.BK', 'HMPRO.BK', 'INTUCH.BK', 'IRPC.BK', 'IVL.BK', 'KBANK.BK', 'KTB.BK', 'KTC.BK',
+               'LH.BK', 'MINT.BK', 'MTC.BK', 'OR.BK', 'OSP.BK', 'PTT.BK', 'PTTEP.BK', 'PTTGC.BK', 'RATCH.BK', 'SAWAD.BK',
+               'SCB.BK', 'SCC.BK', 'TCAP.BK', 'TISCO.BK', 'TMB.BK', 'TOA.BK', 'TOP.BK', 'TRUE.BK', 'TTW.BK', 'TU.BK']
+
 CRYPTO = ['ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'DOGE-USD', 'SOL-USD', 'DOT-USD', 'LTC-USD', 'BCH-USD']
 
 class DataRepository:
@@ -89,6 +95,8 @@ class DataRepository:
         historyPrices['ticker_type'] = 'JAPAN'
       elif ticker in CRYPTO:
         historyPrices['ticker_type'] = 'CRYPTO'
+      elif ticker in THAI_STOCKS:
+        historyPrices['ticker_type'] = 'THAI'
       else:
         historyPrices['ticker_type'] = 'ERROR'
 
