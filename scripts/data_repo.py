@@ -19,7 +19,7 @@ US_STOCKS = [
     'MCD', 'DIS', 'ABT', 'TXN', 'GE', 'INTU', 'VZ', 'AMGN', 'AXP', 'CAT', 'IBM', 'PFE', 'PM',
     'MS', 'ADBE', 'ABNB', 'O', 'NEE', 'MDT', 'LMT', 'SCHW', 'SPGI', 'HON', 'NOW', 'RTX', 'GILD',
     'LOW', 'INTC', 'PYPL', 'ELV', 'BLK', 'UNP', 'LRCX', 'ISRG', 'MO', 'BKNG', 'T', 'USB', 'CVS',
-    'NKE', 'CI', 'GS', 'PLD', 'ADP', 'ZTS', 'MMC', 'CB', 'MMC', 'MMC', 'ICE', 'TGT', 'DUK', 'COP',
+    'NKE', 'CI', 'GS', 'PLD', 'ADP', 'ZTS', 'MMC', 'CB', 'ICE', 'TGT', 'DUK', 'COP',
     'DE', 'CL', 'SO', 'EW', 'MDLZ', 'CME', 'ADSK', 'MU', 'FISV', 'MPC', 'PNC', 'GM', 'NOC', 'APD',
     'SHW', 'SYK', 'PGR', 'ETN', 'BSX', 'HUM', 'KMB', 'MRNA', 'LHX', 'SBUX', 'WM', 'GD', 'AMT',
     'PSX', 'VRTX', 'STZ', 'ITW', 'F', 'ADI', 'ILMN', 'CNC', 'AEP', 'DLR', 'AIG', 'MCK',
