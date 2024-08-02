@@ -161,7 +161,7 @@ class DataRepository:
       historyPrices['is_positive_growth_5d_future'] = np.where(historyPrices['growth_future_5d'] > 1, 1, 0)
 
       # sleep 1 sec between downloads - not to overload the API server
-      time.sleep(2)
+      time.sleep(1)
 
       if self.ticker_df is None:
         self.ticker_df = historyPrices
