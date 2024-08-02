@@ -12,10 +12,21 @@ from statsmodels.tsa.seasonal import STL
 import pandas_datareader as pdr
 
 # https://companiesmarketcap.com/usa/largest-companies-in-the-usa-by-market-cap/
-US_STOCKS = ['MSFT', 'AAPL', 'GOOG', 'NVDA', 'AMZN', 'META', 'BRK-B', 'LLY', 'AVGO','V', 'JPM','TSLA',
-             'WMT','XOM', 'UNH', 'MA','PG', 'ORCL', 'COST', 'JNJ', 'HD', 'MRK', 'BAC', 'ABBV', 'CVX',
-             'NFLX', 'KO', 'AMD', 'CRM', 'PEP', 'QCOM', 'TMO', 'TMUS', 'WFC', 'CSCO', 'AMAT', 'DHR',
-             'MCD','DIS', 'ABT', 'TXN', 'GE', ' INTU', 'VZ', 'AMGN', 'AXP', 'CAT', 'IBM', 'PFE', 'PM', 'MS','ADBE','ABNB','O']
+US_STOCKS = [
+    'MSFT', 'AAPL', 'GOOG', 'NVDA', 'AMZN', 'META', 'BRK-B', 'LLY', 'AVGO', 'V', 'JPM', 'TSLA',
+    'WMT', 'XOM', 'UNH', 'MA', 'PG', 'ORCL', 'COST', 'JNJ', 'HD', 'MRK', 'BAC', 'ABBV', 'CVX',
+    'NFLX', 'KO', 'AMD', 'CRM', 'PEP', 'QCOM', 'TMO', 'TMUS', 'WFC', 'CSCO', 'AMAT', 'DHR',
+    'MCD', 'DIS', 'ABT', 'TXN', 'GE', 'INTU', 'VZ', 'AMGN', 'AXP', 'CAT', 'IBM', 'PFE', 'PM',
+    'MS', 'ADBE', 'ABNB', 'O', 'NEE', 'MDT', 'LMT', 'SCHW', 'SPGI', 'HON', 'NOW', 'RTX', 'GILD',
+    'LOW', 'INTC', 'PYPL', 'ELV', 'BLK', 'UNP', 'LRCX', 'ISRG', 'MO', 'BKNG', 'T', 'USB', 'CVS',
+    'NKE', 'CI', 'GS', 'PLD', 'ADP', 'ZTS', 'MMC', 'CB', 'MMC', 'MMC', 'ICE', 'TGT', 'DUK', 'COP',
+    'DE', 'CL', 'SO', 'EW', 'MDLZ', 'CME', 'ADSK', 'MU', 'FISV', 'MPC', 'PNC', 'GM', 'NOC', 'APD',
+    'SHW', 'SYK', 'PGR', 'ETN', 'BSX', 'HUM', 'KMB', 'MRNA', 'LHX', 'SBUX', 'WM', 'GD', 'AMT',
+    'PSX', 'VRTX', 'STZ', 'ITW', 'F', 'ADI', 'ILMN', 'CNC', 'AEP', 'DLR', 'AIG', 'MCK',
+    'EA', 'WBA', 'CLX', 'COF', 'ECL', 'BAX', 'MET', 'ROP', 'SPG', 'ORLY', 'SRE', 'EMR', 'A',
+    'TT', 'WELL', 'FTNT', 'D', 'KR', 'TRV', 'OTIS', 'HSY', 'APH', 'CDNS', 'HCA', 'FTV', 'MAR',
+    'DD', 'LEN', 'MTD', 'SNPS', 'XYL', 'TSN', 'SYY', 'VLO', 'CHRW', 'SWK', 'DOV', 'PPG'
+]
 # https://companiesmarketcap.com/european-union/largest-companies-in-the-eu-by-market-cap/
 EU_STOCKS = ['NVO','MC.PA', 'ASML', 'RMS.PA', 'OR.PA', 'SAP', 'ACN', 'TTE', 'SIE.DE','IDEXY','CDI.PA']
 # https://companiesmarketcap.com/india/largest-companies-in-india-by-market-cap/
