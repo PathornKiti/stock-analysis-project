@@ -65,10 +65,10 @@ class TransformData:
       df_current_ticker_statistic['Date']= pd.to_datetime(df_current_ticker_statistic['Date'], utc=True)
     
      # merge to one df
-      m1 = pd.merge(current_ticker_df, df_current_ticker_momentum_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
-      m2 = pd.merge(m1, df_current_ticker_volume_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
-      m3 = pd.merge(m2, df_current_ticker_pattern_indicators.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
-      m4 = pd.merge(m3, df_current_ticker_statistic.reset_index(), how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
+      m1 = pd.merge(current_ticker_df, df_current_ticker_momentum_indicators, how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
+      m2 = pd.merge(m1, df_current_ticker_volume_indicators, how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
+      m3 = pd.merge(m2, df_current_ticker_pattern_indicators, how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
+      m4 = pd.merge(m3, df_current_ticker_statistic, how = 'left', on = ["Date","Ticker"], validate = "one_to_one")
       # m3 = current_ticker_df
 
       if merged_df is None:
