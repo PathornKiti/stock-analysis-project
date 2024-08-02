@@ -39,7 +39,7 @@ class DataRepository:
   macro_df: pd.DataFrame
 
   min_date: str
-  ALL_TICKERS: list[str] = US_STOCKS  + EU_STOCKS + INDIA_STOCKS + CHINA_STOCKS + JAPAN_STOCKS + CRYPTO
+  ALL_TICKERS: list[str] = US_STOCKS  + EU_STOCKS + INDIA_STOCKS + CHINA_STOCKS + JAPAN_STOCKS + THAI_STOCKS + CRYPTO
 
   def __init__(self):
     self.ticker_df = None
