@@ -578,7 +578,10 @@ class TransformData:
     beta_stat = talib.BETA(df.High.values, df.Low.values, timeperiod=5)
     correl_stat = talib.CORREL(df.High.values, df.Low.values, timeperiod=30)
     stddev_stat = talib.STDDEV(df.Close.values, timeperiod=5, nbdev=1)
-    tsf_stat = talib.TSF(df.Close.values, timeperiod=14)
+    linear_reg = talib.LINEARREG(df.Close.values, timeperiod=5)
+    intercept = talib.LINEARREG_INTERCEPT(df.Close.values, timeperiod=5)
+    slope = talib.LINEARREG_SLOPE(df.Close.values, timeperiod=5)
+    tsf_stat = talib.TSF(df.Close.values, timeperiod=5)
     var_stat = talib.VAR(df.Close.values, timeperiod=5, nbdev=1)
 
 
@@ -589,6 +592,9 @@ class TransformData:
               'beta':beta_stat,
               'correlation':correl_stat,
               'stddev':stddev_stat,
+              'lineareg':linear_reg,
+              'intercept':intercept,
+              'slope':slope,
               'tsf':tsf_stat,
               'var':var_stat
               }

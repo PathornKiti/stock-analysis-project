@@ -238,6 +238,13 @@ class DataRepository:
                            interval = "1d")
     # sleep 1 sec between downloads - not to overload the API server
     time.sleep(1)
+  
+    dollar_index =  yf.download(tickers = "DX-Y.NYB",
+                           start = min_date,
+                          #  period = "max",
+                           interval = "1d")
+    # sleep 1 sec between downloads - not to overload the API server
+    time.sleep(1)
     
     # Prepare to merge
     dax_daily_to_merge = self._get_growth_df(dax_daily, 'dax')
@@ -249,6 +256,7 @@ class DataRepository:
     crude_oil_to_merge = self._get_growth_df(crude_oil,'wti_oil')
     brent_oil_to_merge = self._get_growth_df(brent_oil,'brent_oil')
     btc_usd_to_merge = self._get_growth_df(btc_usd,'btc_usd')
+    dollar_index_to_merge = self._get_growth_df(dollar_index,'dollar_index')
 
     # Merging
     m2 = pd.merge(snp500_daily_to_merge,
@@ -306,8 +314,15 @@ class DataRepository:
                   right_index=True,
                   how='left',
                   validate='one_to_one')  
+    
+    m10 = pd.merge(m9,
+                  dollar_index_to_merge,
+                  left_index=True,
+                  right_index=True,
+                  how='left',
+                  validate='one_to_one') 
 
-    self.indexes_df = m9
+    self.indexes_df = m10
 
   def fetch_macro(self, min_date=None):
     '''Fetch Macro data from FRED (using Pandas datareader)'''
