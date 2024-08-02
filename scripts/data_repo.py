@@ -29,7 +29,7 @@ THAI_STOCKS = ['ADVANC.BK', 'AOT.BK', 'AWC.BK', 'BAM.BK', 'BBL.BK', 'BDMS.BK', '
                'BJC.BK', 'BTS.BK', 'CBG.BK', 'CENTEL.BK', 'CPALL.BK', 'CPF.BK', 'CRC.BK', 'KKP.BK', 'BCH.BK', 'EGCO.BK',
                'GLOBAL.BK', 'GPSC.BK', 'GULF.BK', 'HMPRO.BK', 'INTUCH.BK', 'IRPC.BK', 'IVL.BK', 'KBANK.BK', 'KTB.BK', 'KTC.BK',
                'LH.BK', 'MINT.BK', 'MTC.BK', 'OR.BK', 'OSP.BK', 'PTT.BK', 'PTTEP.BK', 'PTTGC.BK', 'RATCH.BK', 'SAWAD.BK',
-               'SCB.BK', 'SCC.BK', 'TCAP.BK', 'TISCO.BK', 'TMB.BK', 'TOA.BK', 'TOP.BK', 'TRUE.BK', 'TTW.BK', 'TU.BK']
+               'SCB.BK', 'SCC.BK', 'TCAP.BK', 'TISCO.BK', 'TOA.BK', 'TOP.BK', 'TRUE.BK', 'TTW.BK', 'TU.BK']
 
 CRYPTO = ['ETH-USD', 'BNB-USD', 'XRP-USD', 'ADA-USD', 'DOGE-USD', 'SOL-USD', 'DOT-USD', 'LTC-USD', 'BCH-USD']
 
